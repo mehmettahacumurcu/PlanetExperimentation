@@ -601,14 +601,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocket
       objectReference: {fileID: 0}
-    - target: {fileID: 3069598447806281119, guid: 5a709f9c99048ac4fbfea3d2ee6a6901, type: 3}
-      propertyPath: failureClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 1d9239ecd5782334cbef1d421a48773d, type: 3}
-    - target: {fileID: 3069598447806281119, guid: 5a709f9c99048ac4fbfea3d2ee6a6901, type: 3}
-      propertyPath: successClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 9fdbb1bd0396388409729839726b85c4, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

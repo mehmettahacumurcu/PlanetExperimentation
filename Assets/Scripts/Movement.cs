@@ -8,6 +8,10 @@ public class Movement : MonoBehaviour
     [SerializeField] float thrust = 1000f;
     [SerializeField] float rotationThrust = 10f;
     [SerializeField] AudioClip mainEngine;
+    [SerializeField] ParticleSystem mainThrust;
+    [SerializeField] ParticleSystem rightThrust;
+    [SerializeField] ParticleSystem leftThrust;
+
 
     Rigidbody rb;
     AudioSource audioSource;
@@ -31,31 +35,67 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             // ACCERELATE
-            rb.AddRelativeForce(Vector3.up * thrust * Time.deltaTime);
+            StartThrusting();
 
-            if(!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(mainEngine);
-            }
-            
-            
         }
         else
         {
             audioSource.Stop();
+            mainThrust.Stop();
         }
 
+    }
+
+    void StartThrusting()
+    {
+        rb.AddRelativeForce(Vector3.up * thrust * Time.deltaTime);
+
+        if (!mainThrust.isPlaying)
+        {
+            mainThrust.Play();
+        }
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(mainEngine);
+        }
     }
 
     void ProcessRotation()
     {
         if (Input.GetKey(KeyCode.A))
         {
-            ApplyRotation(rotationThrust);
+            RotateLeft();
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            ApplyRotation(-rotationThrust);
+            RotateRight();
+
+        }
+    }
+
+    private void RotateRight()
+    {
+        ApplyRotation(-rotationThrust);
+        if (!leftThrust.isPlaying)
+        {
+            leftThrust.Play();
+        }
+        else
+        {
+            leftThrust.Stop();
+        }
+    }
+
+    void RotateLeft()
+    {
+        ApplyRotation(rotationThrust);
+        if (!rightThrust.isPlaying)
+        {
+            rightThrust.Play();
+        }
+        else
+        {
+            rightThrust.Stop();
         }
     }
 
